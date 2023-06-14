@@ -6,12 +6,16 @@ public class CharechterTransition : MonoBehaviour
 {
     [SerializeField] Animator _animator;
     [SerializeField] private KeyCode _pressedKey;
-
+    [SerializeField] private KeyCode _pressedKey1;
     void Update()
     {
         if (Input.GetKey(_pressedKey))
         {
-            _animator.SetBool("KeyPressed", true);
+            _animator.SetBool("Pressed1", true);
+        }
+        if (Input.GetKey(_pressedKey))
+        {
+            _animator.SetBool("Pressed2", true);
         }
     }
 
