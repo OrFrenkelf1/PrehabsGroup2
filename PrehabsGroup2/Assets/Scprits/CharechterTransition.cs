@@ -5,19 +5,33 @@ using UnityEngine;
 public class CharechterTransition : MonoBehaviour
 {
     [SerializeField] Animator _animator;
-    [SerializeField] private KeyCode _pressedKey;
-    [SerializeField] private KeyCode _pressedKey1;
+    [SerializeField] private GameObject hatWithEar;
+    [SerializeField] private GameObject hat;
+    [SerializeField] private GameObject bunny;
+    [SerializeField] private GameObject amongUs;
+    [SerializeField] private Transform transHat;
+    [SerializeField] private Transform transBunny;
+    [SerializeField] private Transform transAmongUs;
+    
+
+
     void Update()
     {
-        if (Input.GetKey(_pressedKey))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             _animator.SetBool("Pressed1", true);
+            Destroy(hatWithEar);
+            Instantiate(hat, transHat);
+            Instantiate(bunny, transBunny);
+            Debug.Log("Animation started!");
+
+            Destroy(bunny);
+            Instantiate(amongUs, transAmongUs);
+            Debug.Log("Reached the midpoint of the animation!");
         }
-        if (Input.GetKey(_pressedKey))
-        {
-            _animator.SetBool("Pressed2", true);
-        }
+
     }
+
 
 
     //private void MoveToStartingPosition()
