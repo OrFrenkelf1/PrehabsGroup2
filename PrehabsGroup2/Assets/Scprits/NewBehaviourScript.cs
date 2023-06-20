@@ -76,6 +76,62 @@
 //}
 
 
+//using System.Collections;
+//using UnityEngine;
+
+//public class NewBehaviourScript : MonoBehaviour
+//{
+//    [SerializeField] GameObject hat;
+//    [SerializeField] GameObject hatEars;
+//    [SerializeField] GameObject bunny;
+//    [SerializeField] GameObject amongUs;
+//    [SerializeField] GameObject poof;
+
+//    [SerializeField] Animator anim;
+
+//    private bool isCoroutineRunning = false;
+
+//    private void Update()
+//    {
+//        if (Input.GetKey(KeyCode.F) && !isCoroutineRunning)
+//        {
+//            StartCoroutine(Example());
+//        }
+//    }
+
+//    IEnumerator Example()
+//    {
+//        isCoroutineRunning = true;
+
+//        First();
+//        anim.SetTrigger("Morph");
+
+//        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+
+
+//        Second();
+//        anim.SetTrigger("Morph2");
+
+
+
+//        isCoroutineRunning = false;
+//    }
+
+//    void First()
+//    {
+//        hat.SetActive(true);
+//        bunny.SetActive(true);
+//        poof.SetActive(true);
+//        hatEars.SetActive(false);
+//        amongUs.SetActive(false);
+//    }
+
+//    void Second()
+//    {
+//        bunny.SetActive(false);
+//        amongUs.SetActive(true);
+//    }
+//}
 using System.Collections;
 using UnityEngine;
 
@@ -89,33 +145,22 @@ public class NewBehaviourScript : MonoBehaviour
 
     [SerializeField] Animator anim;
 
-    private bool isCoroutineRunning = false;
+   
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.F) && !isCoroutineRunning)
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            StartCoroutine(Example());
+            First();
+           
+        }
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            Second();
+            
         }
     }
 
-    IEnumerator Example()
-    {
-        isCoroutineRunning = true;
-
-        First();
-        anim.SetTrigger("Morph");
-
-        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
-
-
-        Second();
-        anim.SetTrigger("Morph2");
-
-
-
-        isCoroutineRunning = false;
-    }
 
     void First()
     {
@@ -124,12 +169,15 @@ public class NewBehaviourScript : MonoBehaviour
         poof.SetActive(true);
         hatEars.SetActive(false);
         amongUs.SetActive(false);
+        anim.SetBool("Morph1", true);
+        anim.SetBool("Morph2", false);
     }
 
     void Second()
     {
+        anim.SetBool("Morph1", false);
+        anim.SetBool("Morph2", true);
         bunny.SetActive(false);
         amongUs.SetActive(true);
     }
 }
-
